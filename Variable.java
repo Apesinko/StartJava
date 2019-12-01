@@ -3,7 +3,7 @@ public class Variable {
 		byte processorCore = 6; 
 		short ram = 16; 
 		int windowVersion = 10; 
-		long hdd= 953344L;
+		long hdd = 953344L;
 		float ramFrequency = 3.2F;
 		double cpuFrequency = 3.19D; 
 		char cpuProducer1 = 'I'; 
@@ -23,6 +23,5 @@ public class Variable {
 			"Производитель процессора: " + cpuProducer1 + cpuProducer2 + cpuProducer3 + cpuProducer4 + cpuProducer5 + "\n" +
 			"Является ли Windows версией Pro? " + isPro
 		);
-		
 	}
 }
