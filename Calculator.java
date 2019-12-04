@@ -28,28 +28,23 @@ public class Calculator {
 		
 		if (operation == 1) {
 			result = a + b;
-			System.out.println("Операция сложения = " + result);
-		
+			System.out.println("Операция сложения = " + result);		
 		} else if (operation == 2) {
 			result = a - b;
 			System.out.println("Операция вычитания = " + result);
-		
 		} else if (operation == 3) {
 			result = a * b;
-			System.out.println("Операция умножения = " + result);
-		
+			System.out.println("Операция умножения = " + result);		
 		} else if (operation == 4) {
 			result = a / b;
-			System.out.println("Операция деления = " + result);
-		
+			System.out.println("Операция деления = " + result);		
 		} else if (operation == 5) {
 			result = a;
 			while (b > 1) {
-				result = result * a;
+				result *= a;
 				b--;
 			}
-			System.out.println("Операция возведения в степень = " + result);		
-		
+			System.out.println("Операция возведения в степень = " + result);			
 		} else if (operation == 6) {
 			result = a % b;
 			System.out.println("Операция нахождения остатка от деления = " + result);
