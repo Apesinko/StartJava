@@ -12,11 +12,8 @@ public class GuessNumber {
 		
 		do{
 			System.out.println("\nВведите число");
-			// Считываем ввод с консоли
 			humanNumber = scaner.nextInt();
-			// Проверям диапазон
 			if (humanNumber >= start && humanNumber <= end) {
-				// Если попали в диапазон, проверяем число пользователя
 				if (humanNumber >= computerNumber){
 					System.out.println("\nЗагаданное число меньше");
 				} else if (humanNumber <= computerNumber) {
