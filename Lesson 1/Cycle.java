@@ -1,8 +1,7 @@
 public class Cycle {
 	public static void main(String[] args) {
 		System.out.println("Выведите на консоль с помощью цикла for все числа от [0, 20]");
-		int i;
-		for (i = 0; i <= 20; i++) {
+		for (int i = 0; i <= 20; i++) {
 			System.out.print(i + " ");
 		}
 		
