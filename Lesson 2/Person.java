@@ -25,5 +25,4 @@ public class Person {
 	void learnJava() {
 		//Какой-то код
 	}
-
 }
