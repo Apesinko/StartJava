@@ -1,59 +1,59 @@
+import java.util.Scanner;
+
 public class Calculator {
-	public static void main(String[] args) {
+    public void userInterface() {
+        Scanner scanner = new Scanner(System.in);
+        String answerContinueGame;
 
-		String answerContinueGame;
-		String operation;
+        System.out.println("\nКАЛЬКУЛЯТОР");
 
-		System.out.println("\nКАЛЬКУЛЯТОР");
+        do {
+            System.out.println("\nВведите знак математической операции: +, -, *, /, ^, %");
+            String operation = scanner.nextLine();
 
-		do{			
-			System.out.println("\nВведите знак математической операции: +, -, *, /, ^, %");
-			String operation;
+            while (!operation.equals("+") & !operation.equals("-") & !operation.equals("*") & !operation.equals("/") & !operation.equals("^") & !operation.equals("%")) {
+                System.out.println("\nВведите другой знак математической операции: +, -, *, /, ^, %");
+                operation = scanner.nextLine();
+            }
 
-			while (!operation.equals("+") & !operation.equals("-") & !operation.equals("*") & !operation.equals("/") & !operation.equals("^") & !operation.equals("%")) {
-				System.out.println("\nВведите другой знак математической операции: +, -, *, /, ^, %");
-				operation;
-			}
+            System.out.println("\nВведите первое число: ");
+            double a = scanner.nextInt();
+            System.out.println("\nВведите второе число: ");
+            double b = scanner.nextInt();
+            scanner.nextLine();
 
-			double result;
-			System.out.println("\nВведите первое число: ");
-			double a;
-			System.out.println("\nВведите второе число: ");
-			double b;
-			scanner.nextLine();
+            System.out.println("\nВычисление равно = " + calc(a, operation, b));
 
-			switch (operation) {
-				case "+":
-	                result = a + b;
-	                System.out.println("\nОперация сложения = " + result);
-	                break;
-	            case "-":
-	                result = a - b;
-	                System.out.println("\nОперация вычитания = " + result);
-	                break;
-	            case "*":
-	                result = a * b;
-	                System.out.println("\nОперация умножения = " + result);
-	                break;
-	            case "/":
-	                result = a / b;
-	                System.out.println("\nОперация деления = " + result);
-	                break;
-				case "^":
-	                result = Math.pow(a, b);
-	                System.out.println("\nОперация возведения в степень = " + result);
-	                break;
-	            case "%":
-	                result = a % b;
-	                System.out.println("\nОперация нахождения остатка от деления = " + result);
-	                break;
-			}
-			do {
-			System.out.println("\nХотите сделать ещё одно вычисление? yes/no.");
-			answerContinueGame;
-			} while (!answerContinueGame.equals("yes") & !answerContinueGame.equals("no"));
-				
+            do {
+                System.out.println("\nХотите сделать ещё одно вычисление? yes/no.");
+                answerContinueGame = scanner.nextLine();
+            } while (!answerContinueGame.equals("yes") & !answerContinueGame.equals("no"));
 
-		} while (answerContinueGame.equals("yes"));
-	}
+        } while (answerContinueGame.equals("yes"));
+    }
+
+    public double calc(double a, String operation, double b) {
+        double result = 0;
+        switch (operation) {
+            case "+":
+                result = a + b;
+                break;
+            case "-":
+                result = a - b;
+                break;
+            case "*":
+                result = a * b;
+                break;
+            case "/":
+                result = a / b;
+                break;
+            case "^":
+                result = Math.pow(a, b);
+                break;
+            case "%":
+                result = a % b;
+                break;
+        }
+        return result;
+    }
 }
