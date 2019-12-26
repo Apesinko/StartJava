@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Calculator {
-    public void userInterface() {
+    public void inputData() { 
         Scanner scanner = new Scanner(System.in);
         String answerContinueGame;
 
@@ -22,7 +22,7 @@ public class Calculator {
             double b = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("\nВычисление равно = " + calc(a, operation, b));
+            System.out.println("\nВычисление равно = " + calculate(a, operation, b));
 
             do {
                 System.out.println("\nХотите сделать ещё одно вычисление? yes/no.");
@@ -32,7 +32,7 @@ public class Calculator {
         } while (answerContinueGame.equals("yes"));
     }
 
-    public double calc(double a, String operation, double b) {
+    public double calculate(double a, String operation, double b) {
         double result = 0;
         switch (operation) {
             case "+":
