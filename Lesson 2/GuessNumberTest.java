@@ -10,8 +10,8 @@ public class GuessNumberTest {
 		System.out.println("Введите имя второго игрока");
 		Player playerTwo = new Player(scanner.nextLine());
 
-		GuessNumber guessNumber = new GuessNumber();
-		guessNumber.guess(playerOne, playerTwo);
+		GuessNumber guessNumber = new GuessNumber(playerOne, playerTwo);
+		guessNumber.guess();
 
 	}
 }
