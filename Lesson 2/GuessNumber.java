@@ -16,32 +16,44 @@ public class GuessNumber {
 		int start = 0;
 		int end = 100;
 		int i = 0;
-		int computerNumber = random.nextInt(end);
+		int computerNumber;
 		Player player;
 		String answerContinueGame;
 
-		System.out.println("\nУгадайте число от " + start + " до " + end);
-		do{			
-			i++;
-			if (i % 2 != 0) {
-				player = player1;
-			} else {
-				player = player2;
-			}
-			
-			System.out.println(player.getName() + ", введите число");
-			player.setNumber(scanner.nextInt());
+		do {
+			System.out.println("\nУгадайте число от " + start + " до " + end);
+			computerNumber = random.nextInt(end);
 
-			if (player.getNumber() >= start && player.getNumber() <= end) {
-				if (player.getNumber() >= computerNumber){
-					System.out.println("\nЗагаданное число меньше");
-				} else if (player.getNumber() <= computerNumber) {
-					System.out.println("\nЗагаданное число больше");
+			do{			
+				i++;
+				if (i % 2 != 0) {
+					player = player1;
+				} else {
+					player = player2;
 				}
-			} else {
-				System.out.println("\nВы ввели число не попадающие в интервал от "  + start + " до " + end);
-			}
-		} while(player.getNumber() != computerNumber);
-		System.out.println(player.getName() + ", Вы угадали");		
-	} 
+				
+				System.out.println(player.getName() + ", введите число");
+				player.setNumber(scanner.nextInt());
+
+				if (player.getNumber() >= start && player.getNumber() <= end) {
+					if (player.getNumber() > computerNumber){
+						System.out.println("\nЗагаданное число меньше");
+					} else if (player.getNumber() < computerNumber) {
+						System.out.println("\nЗагаданное число больше");
+					}
+				} else {
+					System.out.println("\nВы ввели число не попадающие в интервал от "  + start + " до " + end);
+				}
+			} while (player.getNumber() != computerNumber);
+
+			System.out.println(player.getName() + ", Вы угадали");
+			scanner.nextLine();
+
+			do {
+                System.out.println("\nХотите ещё раз сыграть? yes/no.");
+                answerContinueGame = scanner.nextLine();
+            } while (!answerContinueGame.equals("yes") & !answerContinueGame.equals("no"));
+            
+		} while (answerContinueGame.equals("yes"));
+	}	
 }
