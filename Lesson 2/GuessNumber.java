@@ -16,18 +16,19 @@ public class GuessNumber {
         Random random = new Random();
         int start = 0;
         int end = 100;
-        int i = 0;
+        boolean isFirstPlayer = true;
         Player player;
 
         System.out.println("\nУгадайте число от " + start + " до " + end);
         computerNumber = random.nextInt(end);
 
         do{
-            i++;
-            if (i % 2 != 0) {
+            if (isFirstPlayer) {
                 player = player1;
+                isFirstPlayer = false;
             } else {
                 player = player2;
+                isFirstPlayer = true;
             }
 
             System.out.println(player.getName() + ", введите число");
