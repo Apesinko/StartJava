@@ -17,35 +17,35 @@ public class GuessNumber {
         int start = 0;
         int end = 100;
         boolean isFirstPlayer = true;
-        Player player;
+        Player currentPlayer;
 
         System.out.println("\nУгадайте число от " + start + " до " + end);
         computerNumber = random.nextInt(end);
 
         do{
             if (isFirstPlayer) {
-                player = player1;
+                currentPlayer = player1;
                 isFirstPlayer = false;
             } else {
-                player = player2;
+                currentPlayer = player2;
                 isFirstPlayer = true;
             }
 
-            System.out.println(player.getName() + ", введите число");
-            player.setNumber(scanner.nextInt());
+            System.out.println(currentPlayer.getName() + ", введите число");
+            currentPlayer.setNumber(scanner.nextInt());
 
-            if (player.getNumber() >= start && player.getNumber() <= end) {
-                if (player.getNumber() > computerNumber) {
+            if (currentPlayer.getNumber() >= start && currentPlayer.getNumber() <= end) {
+                if (currentPlayer.getNumber() > computerNumber) {
                     System.out.println("\nЗагаданное число меньше");
-                } else if (player.getNumber() < computerNumber) {
+                } else if (currentPlayer.getNumber() < computerNumber) {
                     System.out.println("\nЗагаданное число больше");
                 }
             } else {
                 System.out.println("\nВы ввели число не попадающие в интервал от "  + start + " до " + end);
             }
-        } while (player.getNumber() != computerNumber);
+        } while (currentPlayer.getNumber() != computerNumber);
 
-        System.out.println(player.getName() + ", Вы угадали");
+        System.out.println(currentPlayer.getName() + ", Вы угадали");
         scanner.nextLine();
     }
 }
