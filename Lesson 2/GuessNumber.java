@@ -20,9 +20,9 @@ public class GuessNumber {
         Player currentPlayer;
 
         System.out.println("\nУгадайте число от " + start + " до " + end);
-        computerNumber = random.nextInt(end);
+        computerNumber = random.nextInt(end + 1);
 
-        do{
+        do {
             if (isFirstPlayer) {
                 currentPlayer = player1;
                 isFirstPlayer = false;
