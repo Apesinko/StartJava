@@ -1,3 +1,5 @@
+package com.startjava.Lesson_1.variable;
+
 public class Variable {
 	public static void main(String[] args) {
 		byte processorCore = 6; 

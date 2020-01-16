@@ -1,3 +1,5 @@
+package com.startjava.Lesson_1.unicode;
+
 public class Unicode {
 	public static void main(String[] args) {
 		System.out.println("Выведите в цикле символы кодировки Unicode в диапазоне [9398, 10178]. Если выводятся кракозябры, то [33, 126]");		

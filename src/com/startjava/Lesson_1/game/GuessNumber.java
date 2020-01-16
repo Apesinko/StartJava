@@ -1,3 +1,5 @@
+package com.startjava.Lesson_1.game;
+
 import java.util.Scanner;
 
 public class GuessNumber {
