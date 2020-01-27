@@ -1,28 +1,22 @@
-package com.startjava.Lesson_2_3.calculator;
+package com.startjava.Lesson_2_3_4.calculator;
 
 import java.util.Scanner;
 
 public class Calculator {
-    public void inputData() { 
+    public void inputData() {
         Scanner scanner = new Scanner(System.in);
         String answerContinueGame;
 
         System.out.println("\nКАЛЬКУЛЯТОР");
 
         do {
-            System.out.println("\nВведите знак математической операции: +, -, *, /, ^, %");
-            String operation = scanner.nextLine();
+            System.out.println("\nВведите математическое выражение через пробел ");
+            String equation = scanner.nextLine();
+            String[] array = equation.split(" ");
 
-            while (!operation.equals("+") & !operation.equals("-") & !operation.equals("*") & !operation.equals("/") & !operation.equals("^") & !operation.equals("%")) {
-                System.out.println("\nВведите другой знак математической операции: +, -, *, /, ^, %");
-                operation = scanner.nextLine();
-            }
-
-            System.out.println("\nВведите первое число: ");
-            double a = scanner.nextInt();
-            System.out.println("\nВведите второе число: ");
-            double b = scanner.nextInt();
-            scanner.nextLine();
+            double a = Double.parseDouble(array[0]);
+            String operation = array[1];
+            double b = Double.parseDouble(array[2]);
 
             System.out.println("\nВычисление равно = " + calculate(a, operation, b));
 
@@ -53,7 +47,7 @@ public class Calculator {
                 result = Math.pow(a, b);
                 break;
             case "%":
-                result = a % b;
+                result = Math.IEEEremainder(a, b);
                 break;
         }
         return result;
