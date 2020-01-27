@@ -1,20 +1,19 @@
-package com.startjava.Lesson_2_3.game;
+package com.startjava.Lesson_2_3_4.game;
 
 import java.util.Scanner;
-import com.startjava.Lesson_2_3.game.Player;
-import com.startjava.Lesson_2_3.game.GuessNumber;
 
 
 public class GuessNumberTest {
     public static void main(String[] args) {
         String answerContinueGame;
+        int attemptsCount = 10;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите имя первого игрока");
-        Player playerOne = new Player(scanner.nextLine());
+        Player playerOne = new Player(scanner.nextLine(), attemptsCount);
 
         System.out.println("Введите имя второго игрока");
-        Player playerTwo = new Player(scanner.nextLine());
+        Player playerTwo = new Player(scanner.nextLine(), attemptsCount);
 
         GuessNumber guessNumber = new GuessNumber(playerOne, playerTwo);
         do{
