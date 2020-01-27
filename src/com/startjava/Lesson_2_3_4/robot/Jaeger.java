@@ -1,4 +1,4 @@
-package com.startjava.Lesson_2_3.robot;
+package com.startjava.Lesson_2_3_4.robot;
 
 public class Jaeger {
     private String modelName;
@@ -17,7 +17,6 @@ public class Jaeger {
         this.modelName = modelName;
         this.mark = mark;
         this.origin = origin;
-        this.height = height;
         this.height = height;
         this.weight = weight;
         this.speed = speed;
