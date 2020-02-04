@@ -3,7 +3,11 @@ package com.startjava.Lesson_2_3_4.calculator;
 import java.util.Scanner;
 
 public class Calculator {
-    public void inputData() {
+    public static void main(String[] args) {
+        inputData();
+    }
+
+    public static void inputData() {
         Scanner scanner = new Scanner(System.in);
         String answerContinueGame;
 
@@ -28,7 +32,7 @@ public class Calculator {
         } while (answerContinueGame.equals("yes"));
     }
 
-    public double calculate(double a, String operation, double b) {
+    public static double calculate(double a, String operation, double b) {
         double result = 0;
         switch (operation) {
             case "+":
