@@ -2,9 +2,8 @@ package com.startjava.Lesson_2_3_4.game;
 
 public class Player {
     private String name;
-    private int number;
     private int attemptsCount;
-    private int[] enteredNumbers; // массив введенных игроком чисел
+    private int[] arrayEnteredNumbers; // массив введенных игроком чисел
 
     /**
      * Инициализирует поля экземпляра
@@ -15,16 +14,16 @@ public class Player {
     public Player(String name, int attemptsCount) {
         this.name = name;
         this.attemptsCount = attemptsCount;
-        enteredNumbers = new int[attemptsCount];
+        arrayEnteredNumbers = new int[attemptsCount];
     }
 
     /**
-     * Проверяет, что закончились попытки
+     * Возвращает индекс текущего пустого элемента массива
      *
-     * @return true / false
+     * @return индекс массива
      */
-    public boolean notHaveAttempts() {
-        return attemptsCount == 0;
+    public int getCurrentIndex() {
+        return arrayEnteredNumbers.length - attemptsCount;
     }
 
     /**
@@ -32,33 +31,32 @@ public class Player {
      *
      * @param number число введенное пользователем
      */
-    public void enterNumber(int number) {
-        this.number = number;
+    public void addNumber(int number) {
         // Записываем введеное пользователем число в массив
-        enteredNumbers[enteredNumbers.length - attemptsCount] = number;
+        arrayEnteredNumbers[getCurrentIndex()] = number;
         // Минусуем попытки
         attemptsCount--;
     }
 
     /**
-     * Распечатывает в консоль массив чисел, введенных пользователем
+     * Находит последнее введенное число
+     * 
+     * @return число
      */
-    public void printEnteredNumbers() {
-        System.out.print(name + ": ");
-        for (int i = 0; i < enteredNumbers.length - attemptsCount; i++) {
-            System.out.print(enteredNumbers[i] + " ");
-        }
+    public int getLastEnteredNumber() {
+        return arrayEnteredNumbers[getCurrentIndex() - 1];
     }
 
     public String getName() {
         return name;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public int getAttemptsCount() {
         return attemptsCount;
     }
+
+    public int[] getArrayEnteredNumbers() {
+        return arrayEnteredNumbers;
+    }
+
 }
