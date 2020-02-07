@@ -3,7 +3,7 @@ package com.startjava.Lesson_2_3_4.game;
 public class Player {
     private String name;
     private int attemptsCount;
-    private int[] arrayEnteredNumbers; // массив введенных игроком чисел
+    private int[] enteredNumbers; // массив введенных игроком чисел
 
     /**
      * Инициализирует поля экземпляра
@@ -14,7 +14,7 @@ public class Player {
     public Player(String name, int attemptsCount) {
         this.name = name;
         this.attemptsCount = attemptsCount;
-        arrayEnteredNumbers = new int[attemptsCount];
+        enteredNumbers = new int[attemptsCount];
     }
 
     /**
@@ -23,7 +23,7 @@ public class Player {
      * @return индекс массива
      */
     public int getCurrentIndex() {
-        return arrayEnteredNumbers.length - attemptsCount;
+        return enteredNumbers.length - attemptsCount;
     }
 
     /**
@@ -32,9 +32,7 @@ public class Player {
      * @param number число введенное пользователем
      */
     public void addNumber(int number) {
-        // Записываем введеное пользователем число в массив
-        arrayEnteredNumbers[getCurrentIndex()] = number;
-        // Минусуем попытки
+        enteredNumbers[getCurrentIndex()] = number;
         attemptsCount--;
     }
 
@@ -43,8 +41,8 @@ public class Player {
      * 
      * @return число
      */
-    public int getLastEnteredNumber() {
-        return arrayEnteredNumbers[getCurrentIndex() - 1];
+    public int getLastNumber() {
+        return enteredNumbers[getCurrentIndex() - 1];
     }
 
     public String getName() {
@@ -55,8 +53,8 @@ public class Player {
         return attemptsCount;
     }
 
-    public int[] getArrayEnteredNumbers() {
-        return arrayEnteredNumbers;
+    public int[] getEnteredNumbers() {
+        return enteredNumbers;
     }
 
 }
