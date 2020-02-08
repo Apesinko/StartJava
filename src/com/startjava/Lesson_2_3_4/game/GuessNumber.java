@@ -9,13 +9,54 @@ public class GuessNumber {
     private int start;
     private int end;
     private int computerNumber;
+    private Random random;
 
     public GuessNumber(Player player1, Player player2, int start, int end) {
         this.player1 = player1;
         this.player2 = player2;
         this.start = start;
         this.end = end;
-        computerNumber = new Random().nextInt(end + 1);
+        random = new Random();
+    }
+
+    public void guess() {
+        Scanner scanner = new Scanner(System.in);
+        Player currentPlayer;
+        boolean isFirstPlayer = true;
+        computerMakesNumber();
+        player1.resetAttemptsCount();
+        player2.resetAttemptsCount();
+        System.out.println("\nУгадайте число от " + start + " до " + end);
+
+        do {
+            currentPlayer = isFirstPlayer ? player1 : player2;
+            isFirstPlayer = !isFirstPlayer;
+            if (notHaveAttempts(player1) && notHaveAttempts(player2)) {
+                System.out.printf("%s и %s проиграли", player1.getName(), player2.getName());
+                break;
+            }
+            System.out.printf("%s, введите число. У вас осталось %d попыток\n", currentPlayer.getName(), currentPlayer.getAttemptsCount());
+            currentPlayer.addNumber(scanner.nextInt());
+            if (isInRange(currentPlayer.getLastNumber())) {
+                if (currentPlayer.getLastNumber() > computerNumber) {
+                    System.out.println("\nЗагаданное число меньше");
+                } else if (currentPlayer.getLastNumber() < computerNumber) {
+                    System.out.println("\nЗагаданное число больше");
+                }
+            } else {
+                System.out.printf("\nВы ввели число не попадающие в интервал от %d до %d\n\n", start, end);
+            }
+            checkAttempt(currentPlayer);
+        } while (currentPlayer.getLastNumber() != computerNumber);
+
+        System.out.println(currentPlayer.getName() + ", Вы угадали");
+        printEnteredNumbers(player1);
+        System.out.println();
+        printEnteredNumbers(player2);
+    }
+
+    private void computerMakesNumber() {
+        computerNumber = random.nextInt(end + 1);
     }
 
     /**
@@ -28,27 +69,6 @@ public class GuessNumber {
     }
 
     /**
-     * Распечатывает в консоль массив чисел, введенных пользователем
-     */
-    private void printEnteredNumbers(Player player) {
-        System.out.print(player.getName() + ": ");
-        for (int i = 0; i < player.getCurrentIndex(); i++) {
-            System.out.print(player.getEnteredNumbers()[i] + " ");
-        }
-    }
-
-    /**
-     * Проверяем, что у игрока есть попытки
-     */
-    private void checkAttempt(Player player) {
-        if (notHaveAttempts(player) && player.getLastNumber() != computerNumber) {
-            System.out.println(
-                    String.format("У %s закончились попытки", player.getName())
-            );
-        }
-    }
-
-    /**
      * Проверяет попадание в диапазон
      *
      * @param number число
@@ -58,39 +78,23 @@ public class GuessNumber {
         return number >= start && number <= end;
     }
 
-    public void guess() {
-        Scanner scanner = new Scanner(System.in);
-        Player currentPlayer;
-        boolean isFirstPlayer = true;
-        System.out.println("\nУгадайте число от " + start + " до " + end);
+    /**
+     * Проверяем, что у игрока есть попытки
+     */
+    private void checkAttempt(Player player) {
+        if (notHaveAttempts(player) && player.getLastNumber() != computerNumber) {
+            System.out.printf("У %s закончились попытки", player.getName());
+        }
+    }
 
-        do {
-            currentPlayer = isFirstPlayer ? player1 : player2;
-            isFirstPlayer = !isFirstPlayer;
-            // Если у обоих игроков не осталось попыток, то игра закончена
-            if (notHaveAttempts(player1) && notHaveAttempts(player2)) {
-                System.out.format("%s и %s проиграли", player1.getName(), player2.getName());
-                break;
-            }
-            System.out.format("%s, введите число. У вас осталось %d попыток\n", currentPlayer.getName(), currentPlayer.getAttemptsCount());
-            // Считываем ввод с консоли и сохраняем число у пользователя
-            currentPlayer.addNumber(scanner.nextInt());
-            if (isInRange(currentPlayer.getLastNumber())) {
-                if (currentPlayer.getLastNumber() > computerNumber) {
-                    System.out.println("\nЗагаданное число меньше");
-                } else if (currentPlayer.getLastNumber() < computerNumber) {
-                    System.out.println("\nЗагаданное число больше");
-                }
-            } else {
-                System.out.format("\nВы ввели число не попадающие в интервал от %d до %d\n\n", start, end);
-            }
-            // Проверяем, что у игрока есть попытки
-            checkAttempt(currentPlayer);
-        } while (currentPlayer.getLastNumber() != computerNumber);
-
-        System.out.println(currentPlayer.getName() + ", Вы угадали");
-        printEnteredNumbers(player1);
-        System.out.println();
-        printEnteredNumbers(player2);
+    /**
+     * Распечатывает в консоль массив чисел, введенных пользователем
+     */
+    private void printEnteredNumbers(Player player) {
+        System.out.print(player.getName() + ": ");
+        int[] enteredNumbers = player.getEnteredNumbers();
+        for (int enteredNumber : enteredNumbers) {
+            System.out.print(enteredNumber + " ");
+        }
     }
 }

@@ -1,7 +1,10 @@
 package com.startjava.Lesson_2_3_4.game;
 
+import java.util.Arrays;
+
 public class Player {
     private String name;
+    private int defaultAttemptsCount;
     private int attemptsCount;
     private int[] enteredNumbers; // массив введенных игроком чисел
 
@@ -13,8 +16,13 @@ public class Player {
      */
     public Player(String name, int attemptsCount) {
         this.name = name;
-        this.attemptsCount = attemptsCount;
+        defaultAttemptsCount = attemptsCount;
+        resetAttemptsCount();
         enteredNumbers = new int[attemptsCount];
+    }
+
+    public void resetAttemptsCount() {
+        attemptsCount = defaultAttemptsCount;
     }
 
     /**
@@ -22,7 +30,7 @@ public class Player {
      *
      * @return индекс массива
      */
-    public int getCurrentIndex() {
+    private int getCurrentIndex() {
         return enteredNumbers.length - attemptsCount;
     }
 
@@ -38,11 +46,15 @@ public class Player {
 
     /**
      * Находит последнее введенное число
-     * 
+     *
      * @return число
      */
     public int getLastNumber() {
         return enteredNumbers[getCurrentIndex() - 1];
+    }
+
+    public int[] getEnteredNumbers() {
+        return Arrays.copyOf(enteredNumbers, getCurrentIndex());
     }
 
     public String getName() {
@@ -51,10 +63,6 @@ public class Player {
 
     public int getAttemptsCount() {
         return attemptsCount;
-    }
-
-    public int[] getEnteredNumbers() {
-        return enteredNumbers;
     }
 
 }
