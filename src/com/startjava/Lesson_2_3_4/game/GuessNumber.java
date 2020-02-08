@@ -21,16 +21,14 @@ public class GuessNumber {
 
     public void guess() {
         Scanner scanner = new Scanner(System.in);
-        Player currentPlayer;
-        boolean isFirstPlayer = true;
+        Player currentPlayer = null;
         computerMakesNumber();
         player1.resetAttemptsCount();
         player2.resetAttemptsCount();
         System.out.println("\nУгадайте число от " + start + " до " + end);
 
         do {
-            currentPlayer = isFirstPlayer ? player1 : player2;
-            isFirstPlayer = !isFirstPlayer;
+            currentPlayer = player1.equals(currentPlayer) ? player2 : player1;
             if (notHaveAttempts(player1) && notHaveAttempts(player2)) {
                 System.out.printf("%s и %s проиграли", player1.getName(), player2.getName());
                 break;
